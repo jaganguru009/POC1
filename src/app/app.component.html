@@ -1,3 +1,75 @@
-<h1>
-  {{title}}
-</h1>
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#emailBody').wysiwyg();
+
+  });
+</script>
+
+<div class="container">
+<div class="card d-flex justify-content-center mb-4" style="width:1000px;">
+    <div class="header text-center"><i class="fa fa-clipboard"></i>Create Question</div>
+  
+  <form class="form-horizontal">
+       <p class="mx-3 font-weight-bold mb-0">Question Setting</p>
+       <hr>
+      
+   <div class="form-group mx-2 row">
+           <div class="form-group col-md-6">
+                   <select id="status" class="form-control" name="questionType">
+                       <option value="">Select Question Type</option>    
+                       <option *ngFor="let question of questionArr">{{question}}</option>  
+            </select>
+       </div>
+       <div class="form-group col-md-6">
+               <select id="status" class="form-control" name="point">
+                   <option value="">Points</option> 
+                   <option *ngFor="let point of pointsArr">{{point}}</option>     
+        </select>
+      </div>
+    </div>
+ 
+    <div class="form-group mx-2 row">
+           <div class="form-group col-md-6">
+               <input type="text" class="form-control"  #numberOfspaces>   
+       </div>
+   </div>
+   <p class="font-weight-bold mx-3 mb-0">Question</p>
+   <hr>
+   <div class="form-group mx-2 row">
+           <!-- <div class="btn-toolbar" style="width: 1000px;height: 100px;"  data-role="editor-toolbar"
+           data-target="#emailBody">
+           <a class="btn btn-large" data-edit="bold"><i class="icon-bold"></i></a>
+   </div>  -->
+          <textarea style="width: 1000px;height: 100px;"></textarea>
+   </div>
+   <p class="font-weight-bold mx-3 mb-0">Answer List</p>
+   <hr>
+   <div class="header">
+       <div class="row">
+         <div class="col-md-5 ml-2">Blank</div>
+         <div class="col-md-6">Position</div>
+         <div class="">Action</div>
+   </div>
+</div>
+   <div class="row" *ngFor="let item of answerList">
+           <div class="col-md-4 ml-2">{{item.answer}}</div>
+           <div class="col-md-6 text-center">{{item.position}}</div>
+           <div class="btn btn-group">
+                   <button class="btn btn-info btn-sm mb-3 mx-2" (click)="onEditAnswer()"><i class="fa fa-pencil"></i></button>
+                   <button class="btn btn-danger btn-sm mb-3" (click)="onDeleteAnswer()"><i class="fa fa-trash"></i></button>
+           </div>
+     </div>
+     <div class="row mt-4">
+           <div class="col-md-4 col-sm-2 ml-2">
+                   <input type="text" class="form-control" id="answerField" #answerField>   
+           </div>
+           <div class="col-md-6 col-sm-2">
+                   <input type="text" class="form-control" id="PositionField" #PositionField>   
+           </div>
+           <div class="">
+                   <button class="btn btn-primary btn-sm mb-3 mx-2"   (click)="onAddAnswer(answerField.value,PositionField.value,numberOfspaces.value)"><i class="fa fa-plus"></i>Add Answer</button>
+           </div>
+     </div>
+  </form>
+</div>
+</div>
